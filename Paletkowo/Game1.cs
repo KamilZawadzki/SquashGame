@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Paletkowo
 {
@@ -18,6 +19,7 @@ namespace Paletkowo
 
         public static int ScreenHeight;
         public static int ScreenWidth;
+        public static Random Random;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -77,7 +79,7 @@ namespace Paletkowo
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                if (_position.X < 750)
+                if (_position.X+100 < 750)
                     _position.X += Speed;
             }
             // TODO: Add your update logic here
@@ -95,8 +97,17 @@ namespace Paletkowo
 
 
             spriteBatch.Begin();
-            spriteBatch.Draw(_texture,_position,Color.White);
-            spriteBatch.Draw(_texture, new Vector2(350, 300), Color.Red);
+            // spriteBatch.Draw(_texture,_position,Color.White);
+            spriteBatch.Draw(_texture, _position, null, Color.White, 0f,
+            Vector2.Zero, new Vector2(3, 1), SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, new Vector2(350, 350), Color.Red);
+            spriteBatch.Draw(_texture, new Vector2(125,50), null, Color.Brown, 0f,
+            Vector2.Zero, new Vector2(10,1), SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, new Vector2(125, 100), null, Color.Brown, 0f,
+            Vector2.Zero, new Vector2(1,2), SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, new Vector2(575, 100), null, Color.Brown, 0f,
+            Vector2.Zero, new Vector2(1, 2), SpriteEffects.None, 0f);
+
             spriteBatch.End();
             // TODO: Add your drawing code here
 
