@@ -44,12 +44,17 @@ namespace Paletkowo.Sprites
                     this.Velocity.X = -this.Velocity.X;
                 if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
                     this.Velocity.Y = -this.Velocity.Y;
-                if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
-                    this.Velocity.Y = -this.Velocity.Y;
+                //if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
+                //    this.Velocity.Y = -this.Velocity.Y;
             }
 
-            if(Position.Y <=0 || Position.Y + _texture.Height >= Game1.ScreenHeight)
+            if (Position.Y <= 0)
                 Velocity.Y = -Velocity.Y;
+            else if (Position.Y + _texture.Height >= Game1.ScreenHeight)
+                Restart();
+            if (Position.X <= 0 || Position.X + _texture.Width >= Game1.ScreenWidth)
+                Velocity.X = -Velocity.X;
+
 
             Position += Velocity * Speed;
         }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Paletkowo.Sprites;
 using System;
+using System.Collections.Generic;
 
 namespace Paletkowo
 {
@@ -20,12 +22,14 @@ namespace Paletkowo
         public static int ScreenHeight;
         public static int ScreenWidth;
         public static Random Random;
+
+        private List<Sprite> _sprites;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-           
+
         }
 
         /// <summary>
@@ -37,7 +41,9 @@ namespace Paletkowo
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            ScreenWidth = graphics.PreferredBackBufferWidth;
+            ScreenHeight = graphics.PreferredBackBufferHeight;
+            Random = new Random();
             base.Initialize();
         }
 
@@ -50,11 +56,30 @@ namespace Paletkowo
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
+            var ballTexture = Content.Load<Texture2D>("Ball");
+            var batTexture = Content.Load<Texture2D>("Box");
             _texture = Content.Load<Texture2D>("Box");
             _position = new Vector2(400, 400);
-            // TODO: use this.Content to load your game content here
+
+            _sprites = new List<Sprite>()
+            {
+                new Bat(batTexture)
+                {
+                    Position = new Vector2(400,(ScreenWidth/2)-(ballTexture.Width/2)),
+                    Input = new Models.Input()
+                    {
+                        Left = Keys.A,
+                        Right = Keys.D,
+                    }
+                },
+                new Ball(ballTexture)
+                {
+                    Position = new Vector2((ScreenWidth/2)-(ballTexture.Width/2),(ScreenHeight/2)-(ballTexture.Height/2)),
+                },
+            };
         }
+        // TODO: use this.Content to load your game content here
+
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -72,15 +97,20 @@ namespace Paletkowo
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            //if (Keyboard.GetState().IsKeyDown(Keys.A))
+            //{
+            //    if (_position.X > 0)
+            //        _position.X -= Speed;
+            //}
+            //if (Keyboard.GetState().IsKeyDown(Keys.D))
+            //{
+            //    if (_position.X + 100 < 750)
+            //        _position.X += Speed;
+            //}
+            
+            foreach (var sprite in _sprites)
             {
-                if(_position.X > 0)
-                _position.X -= Speed;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-            {
-                if (_position.X+100 < 750)
-                    _position.X += Speed;
+                sprite.Update(gameTime, _sprites);
             }
             // TODO: Add your update logic here
 
@@ -98,15 +128,17 @@ namespace Paletkowo
 
             spriteBatch.Begin();
             // spriteBatch.Draw(_texture,_position,Color.White);
-            spriteBatch.Draw(_texture, _position, null, Color.White, 0f,
-            Vector2.Zero, new Vector2(3, 1), SpriteEffects.None, 0f);
-            spriteBatch.Draw(_texture, new Vector2(350, 350), Color.Red);
-            spriteBatch.Draw(_texture, new Vector2(125,50), null, Color.Brown, 0f,
-            Vector2.Zero, new Vector2(10,1), SpriteEffects.None, 0f);
+           // spriteBatch.Draw(_texture, _position, null, Color.White, 0f,
+           // Vector2.Zero, new Vector2(3, 1), SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, new Vector2(125, 50), null, Color.Brown, 0f,
+            Vector2.Zero, new Vector2(10, 1), SpriteEffects.None, 0f);
             spriteBatch.Draw(_texture, new Vector2(125, 100), null, Color.Brown, 0f,
-            Vector2.Zero, new Vector2(1,2), SpriteEffects.None, 0f);
+            Vector2.Zero, new Vector2(1, 2), SpriteEffects.None, 0f);
             spriteBatch.Draw(_texture, new Vector2(575, 100), null, Color.Brown, 0f,
             Vector2.Zero, new Vector2(1, 2), SpriteEffects.None, 0f);
+
+            foreach (var sprite in _sprites)
+                sprite.Draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here
