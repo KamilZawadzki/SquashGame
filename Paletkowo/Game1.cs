@@ -59,6 +59,8 @@ namespace Paletkowo
             var ballTexture = Content.Load<Texture2D>("Ball");
             var batTexture = Content.Load<Texture2D>("Box");
             _texture = Content.Load<Texture2D>("Box");
+            var wall_top_Texture = Content.Load<Texture2D>("wall_top");
+            var wall_side = Content.Load<Texture2D>("left_right");
             _position = new Vector2(400, 400);
 
             _sprites = new List<Sprite>()
@@ -76,6 +78,20 @@ namespace Paletkowo
                 {
                     Position = new Vector2((ScreenWidth/2)-(ballTexture.Width/2),(ScreenHeight/2)-(ballTexture.Height/2)),
                 },
+                new Wall_top(wall_top_Texture)
+                {
+                    Position=new Vector2(125,50),
+                },
+                new Wall_top(wall_side)
+                {
+                    Position=new Vector2(125,100),
+                },
+                
+                new Wall_top(wall_side)
+                {
+                    Position=new Vector2(575,100),
+                }
+
             };
         }
         // TODO: use this.Content to load your game content here
@@ -127,15 +143,6 @@ namespace Paletkowo
 
 
             spriteBatch.Begin();
-            // spriteBatch.Draw(_texture,_position,Color.White);
-           // spriteBatch.Draw(_texture, _position, null, Color.White, 0f,
-           // Vector2.Zero, new Vector2(3, 1), SpriteEffects.None, 0f);
-            spriteBatch.Draw(_texture, new Vector2(125, 50), null, Color.Brown, 0f,
-            Vector2.Zero, new Vector2(10, 1), SpriteEffects.None, 0f);
-            spriteBatch.Draw(_texture, new Vector2(125, 100), null, Color.Brown, 0f,
-            Vector2.Zero, new Vector2(1, 2), SpriteEffects.None, 0f);
-            spriteBatch.Draw(_texture, new Vector2(575, 100), null, Color.Brown, 0f,
-            Vector2.Zero, new Vector2(1, 2), SpriteEffects.None, 0f);
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);

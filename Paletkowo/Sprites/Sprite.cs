@@ -67,9 +67,9 @@ namespace Paletkowo.Sprites
         protected bool IsTouchingBottom(Sprite sprite)
         {
             return this.Rectangle.Top + this.Velocity.Y < sprite.Rectangle.Bottom &&
-              this.Rectangle.Bottom > sprite.Rectangle.Bottom &&
-              this.Rectangle.Right > sprite.Rectangle.Left &&
-              this.Rectangle.Left < sprite.Rectangle.Right;
+                this.Rectangle.Bottom > sprite.Rectangle.Bottom &&
+                this.Rectangle.Right > sprite.Rectangle.Left &&
+                this.Rectangle.Left < sprite.Rectangle.Right;
         }
 
         #endregion

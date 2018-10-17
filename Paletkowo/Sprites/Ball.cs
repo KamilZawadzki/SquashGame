@@ -44,8 +44,8 @@ namespace Paletkowo.Sprites
                     this.Velocity.X = -this.Velocity.X;
                 if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
                     this.Velocity.Y = -this.Velocity.Y;
-                //if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
-                //    this.Velocity.Y = -this.Velocity.Y;
+                if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
+                    this.Velocity.Y = -this.Velocity.Y;
             }
 
             if (Position.Y <= 0)
