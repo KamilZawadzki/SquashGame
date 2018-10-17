@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Paletkowo.Sprites;
+using Paletkowo.States;
 using System;
 using System.Collections.Generic;
 
@@ -12,24 +13,24 @@ namespace Paletkowo
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public float Speed = 4f;
-        private Texture2D _texture;
-        private Vector2 _position;
+        private State _currentState;
+        private State _nextState;
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }   
 
         public static int ScreenHeight;
         public static int ScreenWidth;
         public static Random Random;
-
-        private List<Sprite> _sprites;
+   
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-
         }
 
         /// <summary>
@@ -41,6 +42,7 @@ namespace Paletkowo
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            IsMouseVisible = true;
             ScreenWidth = graphics.PreferredBackBufferWidth;
             ScreenHeight = graphics.PreferredBackBufferHeight;
             Random = new Random();
@@ -56,43 +58,8 @@ namespace Paletkowo
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var ballTexture = Content.Load<Texture2D>("Ball");
-            var batTexture = Content.Load<Texture2D>("Box");
-            _texture = Content.Load<Texture2D>("Box");
-            var wall_top_Texture = Content.Load<Texture2D>("wall_top");
-            var wall_side = Content.Load<Texture2D>("left_right");
-            _position = new Vector2(400, 400);
-
-            _sprites = new List<Sprite>()
-            {
-                new Bat(batTexture)
-                {
-                    Position = new Vector2(400,(ScreenWidth/2)-(ballTexture.Width/2)),
-                    Input = new Models.Input()
-                    {
-                        Left = Keys.A,
-                        Right = Keys.D,
-                    }
-                },
-                new Ball(ballTexture)
-                {
-                    Position = new Vector2((ScreenWidth/2)-(ballTexture.Width/2),(ScreenHeight/2)-(ballTexture.Height/2)),
-                },
-                new Wall_top(wall_top_Texture)
-                {
-                    Position=new Vector2(125,50),
-                },
-                new Wall_top(wall_side)
-                {
-                    Position=new Vector2(125,100),
-                },
-                
-                new Wall_top(wall_side)
-                {
-                    Position=new Vector2(575,100),
-                }
-
-            };
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content);
+          
         }
         // TODO: use this.Content to load your game content here
 
@@ -113,23 +80,23 @@ namespace Paletkowo
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //if (Keyboard.GetState().IsKeyDown(Keys.A))
-            //{
-            //    if (_position.X > 0)
-            //        _position.X -= Speed;
-            //}
-            //if (Keyboard.GetState().IsKeyDown(Keys.D))
-            //{
-            //    if (_position.X + 100 < 750)
-            //        _position.X += Speed;
-            //}
-            
-            foreach (var sprite in _sprites)
-            {
-                sprite.Update(gameTime, _sprites);
-            }
-            // TODO: Add your update logic here
 
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+                _nextState = null;
+            }
+
+//dziala
+            _currentState.Update(gameTime);
+            _currentState.PostUpdate(gameTime);
+
+            
+            //foreach (var sprite in _sprites)
+            //{
+            //    sprite.Update(gameTime, _sprites);
+            //}
+            //działa
             base.Update(gameTime);
         }
 
@@ -140,16 +107,7 @@ namespace Paletkowo
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-
-            spriteBatch.Begin();
-
-            foreach (var sprite in _sprites)
-                sprite.Draw(spriteBatch);
-
-            spriteBatch.End();
-            // TODO: Add your drawing code here
-
+            _currentState.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
     }
