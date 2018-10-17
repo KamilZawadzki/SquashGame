@@ -14,15 +14,16 @@ namespace Paletkowo.Sprites
         private Vector2? _startPosition = null;
         private float? _startSpeed;
         private bool _isPlaying;
-          public Ball(Texture2D texture) 
-            : base(texture)
+        public double score=0;
+        public Ball(Texture2D texture)
+          : base(texture)
         {
             Speed = 3f;
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            if(_startPosition == null)
+            if (_startPosition == null)
             {
                 _startPosition = Position;
                 _startSpeed = Speed;
@@ -36,8 +37,21 @@ namespace Paletkowo.Sprites
                 return;
             foreach (var sprite in sprites)
             {
-                if(sprite == this)
+                if (sprite == this)
                     continue;
+                if (sprite == sprites[2] || sprite == sprites[3] || sprite == sprites[4])
+                {
+                    if (sprite == sprites[2])
+                    {
+                        if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
+                        {
+                            Console.WriteLine("hit");                 
+                            score++;
+                            Console.WriteLine("Score: " + score);
+                        }
+                    }
+                }
+
                 if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
                     this.Velocity.X = -this.Velocity.X;
                 if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
@@ -46,14 +60,30 @@ namespace Paletkowo.Sprites
                     this.Velocity.Y = -this.Velocity.Y;
                 if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
                     this.Velocity.Y = -this.Velocity.Y;
+
+
             }
 
             if (Position.Y <= 0)
+            {
                 Velocity.Y = -Velocity.Y;
+                score--;
+                Console.WriteLine("Score: " + score);
+            }
+               
             else if (Position.Y + _texture.Height >= Game1.ScreenHeight)
+            {
                 Restart();
+                score = 0;
+            }
+               
             if (Position.X <= 0 || Position.X + _texture.Width >= Game1.ScreenWidth)
+            {
                 Velocity.X = -Velocity.X;
+                score--;
+                Console.WriteLine("Score: " + score);
+            }
+               
 
 
             Position += Velocity * Speed;
