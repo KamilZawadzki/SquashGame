@@ -23,7 +23,7 @@ namespace Paletkowo.States
         public static int ScreenWidth;
         public static Random Random;
 
-
+        Ball ball;
 
         private List<Sprite> _sprites;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
@@ -39,33 +39,35 @@ namespace Paletkowo.States
             var wall_side = content.Load<Texture2D>("left_right");
             _position = new Vector2(400, 400);
 
+            ball = new Ball(ballTexture)
+            {
+                Position = new Vector2((ScreenWidth / 2) - (ballTexture.Width / 2), (ScreenHeight / 2) - (ballTexture.Height / 2)),
+            };
+
             _sprites = new List<Sprite>()
             {
                 new Bat(batTexture)
                 {
-                    Position = new Vector2(400,(ScreenWidth/2)-(ballTexture.Width/2)),
+                    Position = new Vector2((ScreenWidth/2)-(batTexture.Width/2),380),
                     Input = new Models.Input()
                     {
                         Left = Keys.A,
                         Right = Keys.D,
                     }
                 },
-                new Ball(ballTexture)
-                {
-                    Position = new Vector2((ScreenWidth/2)-(ballTexture.Width/2),(ScreenHeight/2)-(ballTexture.Height/2)),
-                },
+                ball,
                 new Wall_top(wall_top_Texture)
                 {
-                    Position=new Vector2(125,50),
+                    Position=new Vector2(150,50),
                 },
                 new Wall_top(wall_side)
                 {
-                    Position=new Vector2(125,100),
+                    Position=new Vector2(150,100),
                 },
 
                 new Wall_top(wall_side)
                 {
-                    Position=new Vector2(575,100),
+                    Position=new Vector2(600,100),
                 }
 
             };
@@ -92,6 +94,10 @@ namespace Paletkowo.States
             foreach (var sprite in _sprites)
             {
                 sprite.Update(gameTime, _sprites);
+            }
+            if (ball.restart)
+            {
+                _game.ChangeState(new GameOver(_game, _graphicsDevice, _content));
             }
 
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Paletkowo.States;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,17 @@ using System.Threading.Tasks;
 
 namespace Paletkowo.Sprites
 {
-    class Ball : Sprite
+   class Ball : Sprite
     {
         private Vector2? _startPosition = null;
         private float? _startSpeed;
         private bool _isPlaying;
         public double score=0;
-        public Ball(Texture2D texture)
+        public bool restart = false;
+       
+         public Ball(Texture2D texture)
           : base(texture)
-        {
+        {         
             Speed = 3f;
         }
 
@@ -29,7 +32,6 @@ namespace Paletkowo.Sprites
                 _startSpeed = Speed;
 
                 Restart();
-
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 _isPlaying = true;
@@ -74,6 +76,7 @@ namespace Paletkowo.Sprites
             else if (Position.Y + _texture.Height >= Game1.ScreenHeight)
             {
                 Restart();
+                restart = true;
                 score = 0;
             }
                
