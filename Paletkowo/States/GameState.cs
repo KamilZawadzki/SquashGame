@@ -33,7 +33,7 @@ namespace Paletkowo.States
             spriteBatch = new SpriteBatch(graphicsDevice);
 
             var ballTexture = content.Load<Texture2D>("Ball");
-            var batTexture = content.Load<Texture2D>("Box");
+            var batTexture = content.Load<Texture2D>("bat_long");
             _texture = content.Load<Texture2D>("Box");
             var wall_top_Texture = content.Load<Texture2D>("wall_top");
             var wall_side = content.Load<Texture2D>("left_right");
