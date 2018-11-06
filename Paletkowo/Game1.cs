@@ -15,6 +15,7 @@ namespace Paletkowo
     public class Game1 : Game
     {
         public static Score punkty;
+        public static bool paused;
         public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -33,7 +34,8 @@ namespace Paletkowo
         {
             graphics = new GraphicsDeviceManager(this);
             punkty = new Score();
-            Content.RootDirectory = "Content";
+            paused = false;
+        Content.RootDirectory = "Content";
         }
 
         /// <summary>
@@ -61,7 +63,8 @@ namespace Paletkowo
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentState = new MenuState(this, graphics.GraphicsDevice, Content);
+            //_currentState = new MenuState(this, graphics.GraphicsDevice, Content);
+            _currentState = new SplashState(this, graphics.GraphicsDevice, Content);
           
         }
         // TODO: use this.Content to load your game content here

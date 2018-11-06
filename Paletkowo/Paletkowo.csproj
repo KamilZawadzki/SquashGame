@@ -55,12 +55,14 @@
     <Compile Include="Sprites\Ball.cs" />
     <Compile Include="Sprites\Bat.cs" />
     <Compile Include="Sprites\Bat_bot.cs" />
+    <Compile Include="Sprites\Logo.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="Sprites\Wall_left.cs" />
     <Compile Include="Sprites\Wall_top.cs" />
     <Compile Include="States\GameOver.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\MenuState.cs" />
+    <Compile Include="States\SplashState.cs" />
     <Compile Include="States\State.cs" />
   </ItemGroup>
   <ItemGroup>

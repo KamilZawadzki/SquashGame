@@ -66,7 +66,7 @@ namespace Paletkowo.States
             spriteBatch.Begin();
             Game1.punkty.score_bot = 0;
 
-            spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "Score:\nGracz: "+ Game1.punkty.score_player+"\nBot: "+ Game1.punkty.score_bot, new Vector2(120, 80), Color.Black);
+            spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "Punkty:\nGracz: "+ Game1.punkty.score_player+"\nBot: "+ Game1.punkty.score_bot, new Vector2(120, 80), Color.Black);
             foreach (var component in _components)
             {
                 component.Draw(gameTime, spriteBatch);

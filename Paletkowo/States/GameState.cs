@@ -13,6 +13,7 @@ namespace Paletkowo.States
 {
     class GameState : State
     {
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public float Speed = 4f;
@@ -87,6 +88,10 @@ namespace Paletkowo.States
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
 
+            if(Game1.paused)
+            spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "Paused | |", new Vector2(30, 30), Color.Black);
+
+
             spriteBatch.End();
 
         }
@@ -97,16 +102,21 @@ namespace Paletkowo.States
         }
 
         public override void Update(GameTime gameTime)
-        {        
-            foreach (var sprite in _sprites)
+        {
+            if (!Game1.paused)
             {
-                sprite.Update(gameTime, _sprites);
+                foreach (var sprite in _sprites)
+                {
+                    sprite.Update(gameTime, _sprites);
+                }
+                if (ball.restart)
+                {
+                    _game.ChangeState(new GameOver(_game, _graphicsDevice, _content));
+                }
+                
             }
-            if (ball.restart)
-            {
-                _game.ChangeState(new GameOver(_game, _graphicsDevice, _content));
-            }
-
+            if (Keyboard.GetState().IsKeyDown(Keys.Pause))
+                Game1.paused = !Game1.paused;
         }
     }
 }
