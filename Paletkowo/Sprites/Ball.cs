@@ -232,7 +232,7 @@ namespace Paletkowo.Sprites
 
         public void Restart()
         {
-            var direction = Game1.Random.Next(0, 4);
+            var direction = Game1.Random.Next(0, 2);
 
             switch (direction)
             {
@@ -240,14 +240,8 @@ namespace Paletkowo.Sprites
                     Velocity = new Vector2(1, 1);
                     break;
                 case 1:
-                    Velocity = new Vector2(1, -1);
-                    break;
-                case 2:
-                    Velocity = new Vector2(-1, -1);
-                    break;
-                case 3:
                     Velocity = new Vector2(-1, 1);
-                    break;
+                    break;      
             }
             Position = (Vector2)_startPosition;
             Speed = (float)_startSpeed;
