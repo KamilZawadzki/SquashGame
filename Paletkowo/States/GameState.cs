@@ -14,7 +14,7 @@ namespace Paletkowo.States
     class GameState : State
     {
         
-        GraphicsDeviceManager graphics;
+        //GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public float Speed = 4f;
         private Texture2D _texture;
@@ -22,7 +22,7 @@ namespace Paletkowo.States
 
         public static int ScreenHeight;
         public static int ScreenWidth;
-        public static Random Random;
+        //public static Random Random;
 
         Ball ball;
 

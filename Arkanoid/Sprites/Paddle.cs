@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,43 +9,27 @@ using System.Threading.Tasks;
 
 namespace Arkanoid.Sprites
 {
-    class Paddle : DrawableGameComponent
+    class Paddle : Sprite
     {
-        int height;
-        int width;
 
-        public int PosX { get; set; }
-        public int PosY { get; set; }
-
-        SpriteBatch spriteBatch;
-        Texture2D pixel;
-        GraphicsDevice graphics;
-
-        public Paddle(Game game,GraphicsDevice graphics,SpriteBatch spriteBatch,int width,int height):base(game)
-            {
-            this.spriteBatch = spriteBatch;
-            this.graphics = graphics;
-            this.width = width;
-            this.height = height;
-
-            pixel = new Texture2D(graphics, 1, 1);
-            pixel.SetData(new Color[] { Color.White });
-
-            ResetPaddlePosition();
-            }
-
-        public void ResetPaddlePosition()
+        public Paddle(Texture2D texture) : base(texture)
         {
-            PosX = graphics.Viewport.Width / 2 - width / 2;
-            PosY = graphics.Viewport.Height - 20;
+            Speed = 5f;        
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(pixel, new Rectangle(PosX, PosY, width, height), Color.White);
-            spriteBatch.End();
-            base.Draw(gameTime);
+            if (Input == null)
+                throw new Exception("Please give value to Input");
+
+            if (Keyboard.GetState().IsKeyDown(Input.Left))
+                Velocity.X = -Speed;
+            if (Keyboard.GetState().IsKeyDown(Input.Right))
+                Velocity.X = Speed;
+
+            Position += Velocity;
+            Position.X = MathHelper.Clamp(Position.X, 0, Game1.globals.ScreenWidth - _texture.Width);
+            Velocity = Vector2.Zero;
         }
     }
 }

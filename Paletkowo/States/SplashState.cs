@@ -36,7 +36,6 @@ namespace Paletkowo.States
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-
             imagesprite.Draw(spriteBatch);
             spriteBatch.DrawString(font, "SquashGame", new Vector2(360, 60 + _content.Load<Texture2D>("SplashScreen/Logo").Height), Color.Black);
             spriteBatch.End();

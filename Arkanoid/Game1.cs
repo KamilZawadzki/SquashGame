@@ -1,4 +1,5 @@
 ﻿using Arkanoid.Sprites;
+using Arkanoid.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,19 +13,15 @@ namespace Arkanoid
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Ball ball;
-        Paddle paddle;
-        int ballSize = 6;
-        int paddleWidth = 40;
-        int paddleHeight = 10;
+        public static Globals globals;
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            graphics.PreferredBackBufferWidth = 500;
-            graphics.PreferredBackBufferHeight = 600;
+            globals = new Globals();
+            graphics.PreferredBackBufferWidth = globals.ScreenWidth;
+            graphics.PreferredBackBufferHeight = globals.ScreenHeight;
         }
 
         /// <summary>
@@ -35,8 +32,6 @@ namespace Arkanoid
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -46,13 +41,8 @@ namespace Arkanoid
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            ball = new Ball(this, GraphicsDevice, spriteBatch, ballSize);
-            paddle=new Paddle(this, GraphicsDevice, spriteBatch, paddleWidth, paddleHeight);
-            Components.Add(ball);
-            Components.Add(paddle);
-            // TODO: use this.Content to load your game content here
+            globals.currentState = new GameState(this, graphics.GraphicsDevice, Content);
         }
 
         /// <summary>
@@ -61,7 +51,7 @@ namespace Arkanoid
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -73,8 +63,15 @@ namespace Arkanoid
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            if (globals.nextState != null)
+            {
+                globals.currentState = globals.nextState;
+                globals.nextState = null;
+            }
 
-            // TODO: Add your update logic here
+     
+            globals.currentState.Update(gameTime);
+            globals.currentState.PostUpdate(gameTime);
 
             base.Update(gameTime);
         }
@@ -85,11 +82,9 @@ namespace Arkanoid
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(51, 51, 51));
-
-            // TODO: Add your drawing code here
-
-            base.Draw(gameTime);
+            GraphicsDevice.Clear(new Color(51, 51, 51));     
+            globals.currentState.Draw(gameTime, spriteBatch);
+            base.Draw(gameTime);   
         }
     }
 }
