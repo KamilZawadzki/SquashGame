@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Paletkowo.Models;
 using Paletkowo.States;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,7 @@ namespace Paletkowo.Sprites
     {
         private Vector2? _startPosition = null;
         private float? _startSpeed;
-        private bool _isPlaying;
-        public double score_player=0;
-        public double score_bot = 0;
+        private bool _isPlaying;      
         public bool restart = false;
         private bool check_hit = false;
         
@@ -26,6 +25,8 @@ namespace Paletkowo.Sprites
           : base(texture)
         {         
             Speed = 3f;
+            Game1.punkty.score_bot = 0;
+            Game1.punkty.score_player = 0;
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -56,17 +57,17 @@ namespace Paletkowo.Sprites
                                 if (Player==true)
                                 {
                                     Console.WriteLine("hit");
-                                    score_player++;
+                                    Game1.punkty.score_player++;
                                     Player =false;
-                                    Console.WriteLine("Player score: " + score_player);
+                                    Console.WriteLine("Player score: " + Game1.punkty.score_player);
                                     check_hit = true;
                                 }
                                 else
                                 {
                                     Console.WriteLine("hit");
-                                    score_bot++;
+                                    Game1.punkty.score_bot++;
                                     Player = true;
-                                    Console.WriteLine("Bot score: " + score_bot);
+                                    Console.WriteLine("Bot score: " + Game1.punkty.score_bot);
                                     check_hit = true;
                                 }
                                 
@@ -178,15 +179,15 @@ namespace Paletkowo.Sprites
                 {
                     if(Player==true)
                     {
-                        score_player--;
-                        Console.WriteLine("Player score: " + score_player);
+                        Game1.punkty.score_player--;
+                        Console.WriteLine("Player score: " + Game1.punkty.score_player);
                         Player = false;
                         check_hit = true;
                     }
                     else
                     {
-                        score_bot--;
-                        Console.WriteLine("Bot score: " + score_bot);
+                        Game1.punkty.score_bot--;
+                        Console.WriteLine("Bot score: " + Game1.punkty.score_bot);
                         Player = true;
                         check_hit = true;
                     }
@@ -198,8 +199,7 @@ namespace Paletkowo.Sprites
             {
                 Restart();
                 restart = true;
-                score_bot = 0;
-                score_player=0;
+   
             }
                
             if (Position.X <= 0 || Position.X + _texture.Width >= Game1.ScreenWidth)
@@ -210,15 +210,15 @@ namespace Paletkowo.Sprites
                 {
                     if(Player==true)
                     {
-                        score_player--;
-                        Console.WriteLine("Player score: " + score_player);
+                        Game1.punkty.score_player--;
+                        Console.WriteLine("Player score: " + Game1.punkty.score_player);
                         Player = false;
                         check_hit = true;
                     }
                     else
                     {
-                        score_bot--;
-                        Console.WriteLine("Bot score: " + score_bot);
+                        Game1.punkty.score_bot--;
+                        Console.WriteLine("Bot score: " + Game1.punkty.score_bot);
                         Player = true;
                         check_hit = true;
                     }                   

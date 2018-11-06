@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Paletkowo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Paletkowo.States
     {
         #region Fields
         protected ContentManager _content;
-
+        protected Score _score;
         protected GraphicsDevice _graphicsDevice;
         protected Game1 _game;
         #endregion
@@ -26,6 +27,7 @@ namespace Paletkowo.States
             _game = game;
             _graphicsDevice = graphicsDevice;
             _content = content;
+            _score = new Score();
         }
         public abstract void Update(GameTime gameTime);
         #endregion

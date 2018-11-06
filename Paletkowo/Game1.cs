@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Paletkowo.Models;
 using Paletkowo.Sprites;
 using Paletkowo.States;
 using System;
@@ -13,6 +14,7 @@ namespace Paletkowo
     /// </summary>
     public class Game1 : Game
     {
+        public static Score punkty;
         public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -30,6 +32,7 @@ namespace Paletkowo
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            punkty = new Score();
             Content.RootDirectory = "Content";
         }
 
