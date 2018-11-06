@@ -11,11 +11,13 @@ namespace Arkanoid
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Globals _globals;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            _globals = new Globals()
         }
 
         /// <summary>
