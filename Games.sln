@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paletkowo", "Paletkowo\Paletkowo.csproj", "{8243338A-1EFA-462C-A1DB-AFEC87A824CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arkanoid", "Arkanoid\Arkanoid.csproj", "{5DCF5D81-C3E9-41E2-BC4C-3FD8587CD766}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{8243338A-1EFA-462C-A1DB-AFEC87A824CA}.Debug|x86.Build.0 = Debug|x86
 		{8243338A-1EFA-462C-A1DB-AFEC87A824CA}.Release|x86.ActiveCfg = Release|x86
 		{8243338A-1EFA-462C-A1DB-AFEC87A824CA}.Release|x86.Build.0 = Release|x86
+		{5DCF5D81-C3E9-41E2-BC4C-3FD8587CD766}.Debug|x86.ActiveCfg = Debug|x86
+		{5DCF5D81-C3E9-41E2-BC4C-3FD8587CD766}.Debug|x86.Build.0 = Debug|x86
+		{5DCF5D81-C3E9-41E2-BC4C-3FD8587CD766}.Release|x86.ActiveCfg = Release|x86
+		{5DCF5D81-C3E9-41E2-BC4C-3FD8587CD766}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
