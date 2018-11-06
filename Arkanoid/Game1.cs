@@ -13,9 +13,11 @@ namespace Arkanoid
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Ball ball;
-
+        Paddle paddle;
         int ballSize = 6;
-
+        int paddleWidth = 40;
+        int paddleHeight = 10;
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -47,9 +49,9 @@ namespace Arkanoid
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ball = new Ball(this, GraphicsDevice, spriteBatch, ballSize);
-
+            paddle=new Paddle(this, GraphicsDevice, spriteBatch, paddleWidth, paddleHeight);
             Components.Add(ball);
-
+            Components.Add(paddle);
             // TODO: use this.Content to load your game content here
         }
 
