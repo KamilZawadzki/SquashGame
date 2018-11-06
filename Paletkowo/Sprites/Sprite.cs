@@ -17,7 +17,7 @@ namespace Paletkowo.Sprites
         public Vector2 Velocity;
         public float Speed;
         public Input Input;
-
+        public bool Player = true;
         public Rectangle Rectangle
         {
             get

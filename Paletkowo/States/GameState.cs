@@ -34,10 +34,13 @@ namespace Paletkowo.States
 
             var ballTexture = content.Load<Texture2D>("Ball");
             var batTexture = content.Load<Texture2D>("bat_long");
+            var batbotTexture = content.Load<Texture2D>("bat_bot");
             _texture = content.Load<Texture2D>("Box");
             var wall_top_Texture = content.Load<Texture2D>("wall_top");
             var wall_side = content.Load<Texture2D>("left_right");
             _position = new Vector2(400, 400);
+
+
 
             ball = new Ball(ballTexture)
             {
@@ -68,8 +71,12 @@ namespace Paletkowo.States
                 new Wall_top(wall_side)
                 {
                     Position=new Vector2(600,100),
+                }, 
+                new Bat_bot(batbotTexture)
+                {
+                    Position= new Vector2((ScreenWidth/2)-(batTexture.Width/2),380),
                 }
-
+              
             };
         }
 
