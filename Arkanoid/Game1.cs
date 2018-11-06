@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Arkanoid.Sprites;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,13 +12,17 @@ namespace Arkanoid
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Globals _globals;
+        Ball ball;
+
+        int ballSize = 6;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            _globals = new Globals()
+
+            graphics.PreferredBackBufferWidth = 500;
+            graphics.PreferredBackBufferHeight = 600;
         }
 
         /// <summary>
@@ -41,6 +46,9 @@ namespace Arkanoid
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            ball = new Ball(this, GraphicsDevice, spriteBatch, ballSize);
+
+            Components.Add(ball);
 
             // TODO: use this.Content to load your game content here
         }
@@ -75,7 +83,7 @@ namespace Arkanoid
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(new Color(51, 51, 51));
 
             // TODO: Add your drawing code here
 

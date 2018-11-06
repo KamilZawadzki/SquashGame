@@ -2,10 +2,10 @@
 {
    public class Globals
     {
-        Score score;
+        //Score score;
         public Globals()
         {
-            score = new Score();
+        //    score = new Score();
         }
     }
 }
