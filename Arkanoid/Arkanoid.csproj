@@ -48,6 +48,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\Ball.cs" />
+    <Compile Include="Sprites\GoldBlock.cs" />
     <Compile Include="Sprites\Paddle.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="States\GameState.cs" />

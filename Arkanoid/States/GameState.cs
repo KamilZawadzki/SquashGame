@@ -36,8 +36,9 @@ namespace Arkanoid.States
            //var ballTexture = content.Load<Texture2D>("Ball");
             var batTexture = content.Load<Texture2D>("Sprites/paddle");
             var ballTexture = content.Load<Texture2D>("Sprites/ball_round");
+            var blockTexture = content.Load<Texture2D> ("Sprites/blocks/block_gold");
 
-
+            int ile_blokow = ScreenWidth / blockTexture.Width;
 
 
             //ball = new Ball(ballTexture)
@@ -60,9 +61,14 @@ namespace Arkanoid.States
             {
                 Position = new Vector2((ScreenWidth / 2) - (batTexture.Width / 2), Game1.globals.ScreenHeight - 70),
             },
-
-
             };
+            for (int i = 0; i < ile_blokow; i++)
+            {
+                _sprites.Add(new GoldBlock(blockTexture)
+                {
+                    Position = new Vector2(1+(i*blockTexture.Width), 100),
+                });
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -89,8 +95,9 @@ namespace Arkanoid.States
         {
             if (!Game1.globals.Paused)
             {
-                foreach (var sprite in _sprites)
+                for (int i = 0; i < _sprites.Count; i++)
                 {
+                    var sprite = _sprites[i];
                     sprite.Update(gameTime, _sprites);
                 }
                // if (ball.restart)

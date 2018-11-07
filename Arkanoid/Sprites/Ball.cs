@@ -40,21 +40,34 @@ namespace Arkanoid.Sprites
                 positionToPaddle(sprites);
                 return;
             }
-            foreach (var sprite in sprites)
+            for (int i=0;i<sprites.Count; i++)
             {
+                var sprite = sprites[i];
                 if (sprite == this)
-                    continue;            
-                
-                    if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
-                        this.Velocity.X = -this.Velocity.X;
-                    if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
-                        this.Velocity.X = -this.Velocity.X;
+                    continue;
+
+                if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
+                {
+                    this.Velocity.X = -this.Velocity.X;
+                    
+                   
+                }
+                if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
+                {
+                    this.Velocity.X = -this.Velocity.X;
+
+                }
                     if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
-                        this.Velocity.Y = -this.Velocity.Y;
-                    if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
-                        this.Velocity.Y = -this.Velocity.Y;
-             
-                
+                {
+                    this.Velocity.Y = -this.Velocity.Y;
+
+                }
+                if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
+                {
+                    this.Velocity.Y = -this.Velocity.Y;
+
+                }
+               
             }
 
             if (Position.Y <= 0)
