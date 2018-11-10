@@ -18,6 +18,7 @@ namespace Arkanoid.Sprites
         public float Speed;
         public Input Input;
         public bool Player = true;
+        public int life=2;
         public Rectangle Rectangle
         {
             get
@@ -46,8 +47,7 @@ namespace Arkanoid.Sprites
             return this.Rectangle.Right + this.Velocity.X > sprite.Rectangle.Left &&
               this.Rectangle.Left < sprite.Rectangle.Left &&
               this.Rectangle.Bottom > sprite.Rectangle.Top &&
-              this.Rectangle.Top < sprite.Rectangle.Bottom;
-     
+              this.Rectangle.Top < sprite.Rectangle.Bottom;     
         }
 
         protected bool IsTouchingRight(Sprite sprite)
@@ -79,6 +79,9 @@ namespace Arkanoid.Sprites
                 this.Rectangle.Left < sprite.Rectangle.Right;
             
         }
+
+
+        
 
         #endregion
 

@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Arkanoid.States;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Arkanoid.Sprites
 {
-    class GoldBlock : Sprite
+    class RedBlock : Sprite
     {
         Texture2D _texture;
-        public GoldBlock(Texture2D texture) : base(texture)
+        
+        public RedBlock(Texture2D texture) : base(texture)
         {
             _texture = texture;
         }

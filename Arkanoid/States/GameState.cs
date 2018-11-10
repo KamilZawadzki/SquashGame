@@ -36,9 +36,9 @@ namespace Arkanoid.States
            //var ballTexture = content.Load<Texture2D>("Ball");
             var batTexture = content.Load<Texture2D>("Sprites/paddle");
             var ballTexture = content.Load<Texture2D>("Sprites/ball_round");
-            var blockTexture = content.Load<Texture2D> ("Sprites/blocks/block_gold");
-
-            int ile_blokow = ScreenWidth / blockTexture.Width;
+            var blockTexture_gold = content.Load<Texture2D> ("Sprites/blocks/block_gold");
+            var blockTexture_red = content.Load<Texture2D>("Sprites/blocks/block_red");
+            int ile_blokow = ScreenWidth / blockTexture_gold.Width;
 
 
             //ball = new Ball(ballTexture)
@@ -62,12 +62,24 @@ namespace Arkanoid.States
                 Position = new Vector2((ScreenWidth / 2) - (batTexture.Width / 2), Game1.globals.ScreenHeight - 70),
             },
             };
-            for (int i = 0; i < ile_blokow; i++)
+            
+            for (int i = 0; i < ile_blokow*3; i++)
             {
-                _sprites.Add(new GoldBlock(blockTexture)
+                if (i <= ile_blokow - 1)
                 {
-                    Position = new Vector2(1+(i*blockTexture.Width), 100),
-                });
+                    _sprites.Add(new GoldBlock(blockTexture_gold)
+                    {
+                        Position = new Vector2(1 + (i * blockTexture_gold.Width), 100),
+                    });
+                    _sprites.Add(new RedBlock(blockTexture_red)
+                    {
+                        Position = new Vector2(1 + (i * blockTexture_red.Width), 84),
+                    });
+                    _sprites.Add(new GoldBlock(blockTexture_gold)
+                    {
+                        Position = new Vector2(1 + (i * blockTexture_gold.Width), 68),
+                    });
+                }
             }
         }
 

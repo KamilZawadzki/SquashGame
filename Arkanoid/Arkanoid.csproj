@@ -50,6 +50,7 @@
     <Compile Include="Sprites\Ball.cs" />
     <Compile Include="Sprites\GoldBlock.cs" />
     <Compile Include="Sprites\Paddle.cs" />
+    <Compile Include="Sprites\RedBlock.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\State.cs" />
