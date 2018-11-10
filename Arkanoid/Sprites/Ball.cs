@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Arkanoid.Sprites
 {
-   class Ball : Sprite
+   class  Ball : Sprite
     {
         private Vector2? _startPosition = null;
         private float? _startSpeed;
@@ -49,22 +49,37 @@ namespace Arkanoid.Sprites
                 if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
                 {
                     this.Velocity.X = -this.Velocity.X;
-                    
-                   
+                   if(sprite is GoldBlock)
+                    {
+                        sprites.Remove(sprite);
+                    }
+                                 
                 }
                 if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
                 {
                     this.Velocity.X = -this.Velocity.X;
+                    if (sprite is GoldBlock)
+                    {
+                        sprites.Remove(sprite);
+                    }
 
                 }
                     if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
                 {
                     this.Velocity.Y = -this.Velocity.Y;
+                    if (sprite is GoldBlock)
+                    {
+                        sprites.Remove(sprite);
+                    }
 
                 }
                 if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
                 {
                     this.Velocity.Y = -this.Velocity.Y;
+                    if (sprite is GoldBlock)
+                    {
+                        sprites.Remove(sprite);
+                    }
 
                 }
                
