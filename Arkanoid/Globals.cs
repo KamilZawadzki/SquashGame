@@ -16,6 +16,8 @@ namespace Arkanoid
         public bool isPlaying { get; set; }
 
         public Score actualScore {get;set;}
+        public float BallSpeed { get; internal set; }
+
         public Globals()
         {
             ScreenWidth = 500;
@@ -24,6 +26,7 @@ namespace Arkanoid
             Random = new Random();
             actualScore = new Score();
             isPlaying = false;
+            BallSpeed = 5f;
         }
     }
 }

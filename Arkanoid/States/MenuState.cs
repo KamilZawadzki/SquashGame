@@ -15,17 +15,21 @@ namespace Arkanoid.States
         private List<Component> _components;
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            var buttonTexture = _content.Load<Texture2D>("Controls/Button");
-            var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
+            game.IsMouseVisible = true;
+            var buttonTexture = content.Load<Texture2D>("Buttons/button");
+            //var buttonTexture2 = content.Load<Texture2D>("Controlss/blue_button_02");
+            var buttonFont = content.Load<SpriteFont>("Fonts/Font");
+
+            int middle = (Game1.globals.ScreenWidth - buttonTexture.Width)/2;
             var newGameButton = new Button(buttonTexture,buttonFont)
             {
-                Position = new Vector2(120, 200),
+                Position = new Vector2(middle, 200),
                 Text = "New Game",
             };
             newGameButton.Click += NewGameButton_Click;
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(120, 300),
+                Position = new Vector2(middle, 300),
                 Text = "Quit",
             };
             quitGameButton.Click += QuitGameButton_Click;

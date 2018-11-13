@@ -81,9 +81,47 @@ namespace Arkanoid.Sprites
         }
 
 
-        
+
 
         #endregion
+
+        #region Collisions with Blocks
+        protected bool IsTop(Sprite sprite)
+        {
+            return this.Rectangle.Bottom > sprite.Rectangle.Top + sprite.Velocity.Y &&
+                  this.Rectangle.Top < sprite.Rectangle.Top &&
+                  this.Rectangle.Right > sprite.Rectangle.Left &&
+                  this.Rectangle.Left < sprite.Rectangle.Right;
+        }
+        protected bool IsRight(Sprite sprite)
+        {
+
+            return this.Rectangle.Left < sprite.Rectangle.Right + sprite.Velocity.X &&
+              this.Rectangle.Right > sprite.Rectangle.Right &&
+              this.Rectangle.Bottom > sprite.Rectangle.Top &&
+              this.Rectangle.Top < sprite.Rectangle.Bottom;
+
+        }
+        protected bool IsLeft(Sprite sprite)
+        {
+
+            return this.Rectangle.Right > sprite.Rectangle.Left + sprite.Velocity.X &&
+              this.Rectangle.Left < sprite.Rectangle.Left &&
+              this.Rectangle.Bottom > sprite.Rectangle.Top &&
+              this.Rectangle.Top < sprite.Rectangle.Bottom;
+        }
+        protected bool IsBottom(Sprite sprite)
+        {
+
+            return this.Rectangle.Top < sprite.Rectangle.Bottom + sprite.Velocity.Y &&
+                this.Rectangle.Bottom > sprite.Rectangle.Bottom &&
+                this.Rectangle.Right > sprite.Rectangle.Left &&
+                this.Rectangle.Left < sprite.Rectangle.Right;
+
+        }
+        #endregion
+
+
 
     }
 }

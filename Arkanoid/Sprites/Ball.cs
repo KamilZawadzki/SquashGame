@@ -21,11 +21,12 @@ namespace Arkanoid.Sprites
         public Ball(Texture2D texture)
           : base(texture)
         {         
-            Speed = 5f;  
+            Speed = Game1.globals.BallSpeed;  
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
+            Speed = Game1.globals.BallSpeed;
             if (_startPosition == null)
             {
                 _startPosition = Position;
@@ -49,77 +50,77 @@ namespace Arkanoid.Sprites
                 if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
                 {
                     this.Velocity.X = -this.Velocity.X;
-                   if(sprite is GoldBlock)
-                    {
-                        sprites.Remove(sprite);
-                    }
-                    if (sprite is RedBlock)
-                    {
-                        if (sprite.life == 1)
-                        {
-                            sprites.Remove(sprite);
-                        }
-                        sprite.life = 1;
-                    }
+                   //if(sprite is GoldBlock)
+                   // {
+                   //     sprites.Remove(sprite);
+                   // }
+                   // if (sprite is RedBlock)
+                   // {
+                   //     if (sprite.life == 1)
+                   //     {
+                   //         sprites.Remove(sprite);
+                   //     }
+                   //     sprite.life = 1;
+                   // }
                 }
 
                 if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
                 {
                     this.Velocity.X = -this.Velocity.X;
-                    if (sprite is GoldBlock)
-                    {
-                        sprites.Remove(sprite);
-                    }
-                    if(sprite is RedBlock)
-                    {
-                        if(sprite.life==1)
-                        {
-                            sprites.Remove(sprite);
-                        }
-                        if(sprites.Count!=1)
-                        {
-                            sprite.life = 1;
-                        }
+                    //if (sprite is GoldBlock)
+                    //{
+                    //    sprites.Remove(sprite);
+                    //}
+                    //if(sprite is RedBlock)
+                    //{
+                    //    if(sprite.life==1)
+                    //    {
+                    //        sprites.Remove(sprite);
+                    //    }
+                    //    if(sprites.Count!=1)
+                    //    {
+                    //        sprite.life = 1;
+                    //    }
 
                         
 
-                    }
+                    //}
 
                 }
 
                     if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
                 {
                     this.Velocity.Y = -this.Velocity.Y;
-                    if (sprite is GoldBlock)
-                    {
-                        sprites.Remove(sprite);
-                    }
-                    if (sprite is RedBlock)
-                    {
-                        if (sprite.life == 1)
-                        {
-                            sprites.Remove(sprite);
-                        }
-                        sprite.life = 1;
-                    }
+                    //if (sprite is GoldBlock)
+                    //{
+                    //    sprites.Remove(sprite);
+                    //}
+                    //if (sprite is RedBlock)
+                    //{
+                    //    if (sprite.life == 1)
+                    //    {
+                    //        sprites.Remove(sprite);
+                    //    }
+                    //    sprite.life = 1;
+                    //}
 
                 }
 
                 if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
                 {
                     this.Velocity.Y = -this.Velocity.Y;
-                    if (sprite is GoldBlock)
-                    {
-                        sprites.Remove(sprite);
-                    }
-                    if (sprite is RedBlock)
-                    {
-                        if (sprite.life == 1)
-                        {
-                            sprites.Remove(sprite);
-                        }
-                        sprite.life--;
-                    }
+                    //if (sprite is GoldBlock)
+                    //{
+                    //    sprites.Remove(sprite);
+                    //}
+                    //if (sprite is RedBlock)
+                    //{
+                    //    if (sprite.life == 1)
+                    //    {
+                    //        sprites.Remove(sprite);
+                    //    }
+                    //    sprite.life--;
+                    //}
                 }
                
             }

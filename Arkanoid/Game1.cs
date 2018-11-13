@@ -48,7 +48,7 @@ namespace Arkanoid
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            globals.currentState = new GameState(this, graphics.GraphicsDevice, Content);
+            globals.currentState = new MenuState(this, graphics.GraphicsDevice, Content);
         }
 
         /// <summary>
@@ -67,6 +67,12 @@ namespace Arkanoid
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
+            if (_nextState != null)
+            {
+                globals.currentState = _nextState;
+                _nextState = null;
+            }
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             if (globals.nextState != null)
