@@ -14,7 +14,13 @@ namespace Arkanoid
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public static Globals globals;
-        
+
+        private State _nextState;
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -23,7 +29,7 @@ namespace Arkanoid
             graphics.PreferredBackBufferWidth = globals.ScreenWidth;
             graphics.PreferredBackBufferHeight = globals.ScreenHeight;
         }
-
+      
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic

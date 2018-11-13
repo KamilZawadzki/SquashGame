@@ -16,12 +16,12 @@ namespace Arkanoid.Sprites
     {
         private Vector2? _startPosition = null;
         private float? _startSpeed;
-        private bool _isPlaying;      
+            
         public bool restart = false;      
         public Ball(Texture2D texture)
           : base(texture)
         {         
-            Speed = 7f;  
+            Speed = 5f;  
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -34,8 +34,8 @@ namespace Arkanoid.Sprites
                 Restart();
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
-                _isPlaying = true;
-            if (!_isPlaying)
+                Game1.globals.isPlaying = true;
+            if (!Game1.globals.isPlaying)
             {
                 positionToPaddle(sprites);
                 return;
@@ -165,7 +165,8 @@ namespace Arkanoid.Sprites
                     break;      
             }      
             Speed = (float)_startSpeed;
-            _isPlaying = false;
+            Game1.globals.isPlaying = false;
+      
         }
     }
 }

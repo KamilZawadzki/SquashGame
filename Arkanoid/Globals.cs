@@ -1,4 +1,5 @@
-﻿using Arkanoid.States;
+﻿using Arkanoid.Models;
+using Arkanoid.States;
 using System;
 
 namespace Arkanoid
@@ -7,18 +8,22 @@ namespace Arkanoid
     {
         //Score score;
         public int ScreenWidth { get; set; }
-        public int ScreenHeight  { get; set;}
+        public int ScreenHeight { get; set; }
         public bool Paused { get; set; }
         public State currentState { get; set; }
         public State nextState { get; set; }
         public Random Random { get; set; }
+        public bool isPlaying { get; set; }
+
+        public Score actualScore {get;set;}
         public Globals()
         {
             ScreenWidth = 500;
             ScreenHeight = 600;
             Paused = false;
             Random = new Random();
-            //    score = new Score();
+            actualScore = new Score();
+            isPlaying = false;
         }
     }
 }
