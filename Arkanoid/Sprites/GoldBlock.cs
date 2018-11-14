@@ -15,12 +15,15 @@ namespace Arkanoid.Sprites
     {
         int sprite_life;
         int points_for_break;
-        Texture2D _texture;
-        public GoldBlock(Texture2D texture) : base(texture)
+        Texture2D _texture,_batShort,_batLong,_powerup;
+        public GoldBlock(Texture2D texture, Texture2D batLong, Texture2D batShort, Texture2D powerup) : base(texture)
         {
             this.sprite_life = 1;
             this.points_for_break = 1;
             _texture = texture;
+            _batLong = batLong;
+            _batShort = batShort;
+            _powerup = powerup;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -66,6 +69,15 @@ namespace Arkanoid.Sprites
             {
                 Game1.globals.actualScore.score_player += points_for_break;
                 sprites.Remove(this);
+                Random rnd = new Random();
+                //TODO: zrobić randoma rzadziej!
+                int number = rnd.Next(1, 5);
+                if (number == 2)
+                {
+                    PowerUp2 power = new PowerUp2(_powerup, this.Position, _batShort, _batLong);
+                    sprites.Add(power);
+                }
+
             }
         }
   

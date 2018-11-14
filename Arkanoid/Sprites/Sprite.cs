@@ -11,7 +11,7 @@ namespace Arkanoid.Sprites
 {
     class Sprite
     {
-        public Texture2D _texture { get; }
+        public Texture2D _texture { get; set; }
 
         public Vector2 Position;
         public Vector2 Velocity;

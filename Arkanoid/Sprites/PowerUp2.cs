@@ -8,16 +8,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Arkanoid.Sprites
 {
-    class PowerUp : Sprite
+    class PowerUp2 : Sprite
     {
-        Texture2D _texture;
+        Texture2D _texture,_shortBat,_longBat;
 
         private float powerUpSpeed;
 
-        public PowerUp(Texture2D texture,Vector2 position) : base(texture)
+        public PowerUp2(Texture2D texture,Vector2 position, Texture2D shortBat, Texture2D longBat) : base(texture)
         {
             powerUpSpeed = 1f;
             _texture = texture;
+            _shortBat = shortBat;
+            _longBat = longBat;
             this.Position = position;
         }
 
@@ -34,13 +36,14 @@ namespace Arkanoid.Sprites
             if (this.IsTouchingTop(sprites[0])||this.IsTouchingLeft(sprites[0])||this.IsTouchingRight(sprites[0]))
             {
                 sprites.Remove(this);
-                if (Game1.globals.BallSpeed == 7f)
+                
+                if (sprites[0]._texture == _shortBat)
                 {
-                    Game1.globals.BallSpeed = 5f;
+                    sprites[0]._texture = _longBat;
                 }
                 else
                 {
-                    Game1.globals.BallSpeed = 7f;
+                    sprites[0]._texture = _shortBat;
 
                 };
             }else if(this.Position.Y > Game1.globals.ScreenHeight)

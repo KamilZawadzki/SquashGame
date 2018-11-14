@@ -52,6 +52,7 @@
     <Compile Include="Sprites\Ball.cs" />
     <Compile Include="Sprites\GoldBlock.cs" />
     <Compile Include="Sprites\Paddle.cs" />
+    <Compile Include="Sprites\PowerUp2.cs" />
     <Compile Include="Sprites\PowerUp.cs" />
     <Compile Include="Sprites\RedBlock.cs" />
     <Compile Include="Sprites\Sprite.cs" />

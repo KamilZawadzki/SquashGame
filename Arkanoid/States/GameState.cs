@@ -46,6 +46,7 @@ namespace Arkanoid.States
 
             powerup = content.Load<Texture2D>("PowerUps/slider");
             var batTexture = content.Load<Texture2D>("Sprites/paddle");
+            var batTextureShort = content.Load<Texture2D>("Sprites/batShort");
             var ballTexture = content.Load<Texture2D>("Sprites/ball_round");
             var blockTexture_gold = content.Load<Texture2D>("Sprites/blocks/block_gold");
             var blockTexture_red = content.Load<Texture2D>("Sprites/blocks/block_red");
@@ -84,7 +85,7 @@ namespace Arkanoid.States
                 if (i <= ile_blokow - 1)
                 {
 
-                    _sprites.Add(new GoldBlock(blockTexture_gold)
+                    _sprites.Add(new GoldBlock(blockTexture_gold,batTexture,batTextureShort,powerup)
                     {
                         Position = new Vector2(temp + (i * blockTexture_gold.Width), 100),
                     });
@@ -92,15 +93,15 @@ namespace Arkanoid.States
                     {
                         Position = new Vector2(temp + (i * blockTexture_red.Width), 84),
                     });
-                    _sprites.Add(new GoldBlock(blockTexture_gold)
+                    _sprites.Add(new GoldBlock(blockTexture_gold,batTexture, batTextureShort, powerup)
                     {
                         Position = new Vector2(temp + (i * blockTexture_gold.Width), 68),
                     });
-                    _sprites.Add(new GoldBlock(blockTexture_gold)
+                    _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
                     {
                         Position = new Vector2(temp + (i * blockTexture_gold.Width), 52),
                     });
-                    _sprites.Add(new GoldBlock(blockTexture_gold)
+                    _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
                     {
                         Position = new Vector2(temp + (i * blockTexture_gold.Width), 36),
                     });
@@ -108,11 +109,11 @@ namespace Arkanoid.States
                     {
                         Position = new Vector2(temp + (i * blockTexture_red.Width), 116),
                     });
-                    _sprites.Add(new GoldBlock(blockTexture_gold)
+                    _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
                     {
                         Position = new Vector2(temp + (i * blockTexture_gold.Width), 132),
                     });
-                    _sprites.Add(new GoldBlock(blockTexture_gold)
+                    _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
                     {
                         Position = new Vector2(temp + (i * blockTexture_gold.Width), 148),
                     });
@@ -137,14 +138,14 @@ namespace Arkanoid.States
             if (Game1.globals.Paused)
                 spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "Paused | |", new Vector2(30, 30), Color.Black);
 
-            if (Game1.globals.actualScore.score_player == 1)
-            {
-                if (speeder == null)
-                {
-                    speeder = new PowerUp(powerup, new Vector2(ball.Position.X, ball.Position.Y));
-                    _sprites.Add(speeder);
-                }
-            }
+            //if (Game1.globals.actualScore.score_player == 1)
+            //{
+            //    if (speeder == null)
+            //    {
+            //        speeder = new PowerUp(powerup, new Vector2(ball.Position.X, ball.Position.Y));
+            //        _sprites.Add(speeder);
+            //    }
+            //}
 
             spriteBatch.End();
 

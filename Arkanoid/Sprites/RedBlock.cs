@@ -58,7 +58,9 @@ namespace Arkanoid.Sprites
             if (this.sprite_life < 0)
             {
                   Game1.globals.actualScore.score_player += points_for_break;
-                    sprites.Remove(this);
+                    sprites.Remove(this);                
+                    PowerUp speeder = new PowerUp(_powerup, new Vector2(this.Position.X, this.Position.Y));
+                    sprites.Add(speeder);                
             }
                 base.Update(gameTime, sprites);
         }
