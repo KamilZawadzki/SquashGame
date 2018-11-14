@@ -31,10 +31,13 @@ namespace Arkanoid.Sprites
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
 
-            if (this.IsTouchingTop(sprites[0]))
+            if (this.IsTouchingTop(sprites[0])||this.IsTouchingLeft(sprites[0])||this.IsTouchingRight(sprites[0]))
             {
                 sprites.Remove(this);
                 Game1.globals.BallSpeed = 7f;
+            }else if(this.Position.Y > Game1.globals.ScreenHeight)
+            {
+                sprites.Remove(this);
             }
 
 

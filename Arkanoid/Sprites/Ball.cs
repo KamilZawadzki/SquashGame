@@ -47,7 +47,7 @@ namespace Arkanoid.Sprites
                 if (sprite == this)
                     continue;
 
-                if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
+                if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite) && !(sprite is PowerUp))
                 {
                     this.Velocity.X = -this.Velocity.X;
                    //if(sprite is GoldBlock)
@@ -64,7 +64,7 @@ namespace Arkanoid.Sprites
                    // }
                 }
 
-                if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
+                if (this.Velocity.X < 0 && this.IsTouchingRight(sprite) && !(sprite is PowerUp))
                 {
                     this.Velocity.X = -this.Velocity.X;
                     //if (sprite is GoldBlock)
@@ -88,7 +88,7 @@ namespace Arkanoid.Sprites
 
                 }
 
-                    if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
+                    if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite) && !(sprite is PowerUp))
                 {
                     this.Velocity.Y = -this.Velocity.Y;
                     //if (sprite is GoldBlock)
@@ -106,7 +106,7 @@ namespace Arkanoid.Sprites
 
                 }
 
-                if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
+                if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite) && !(sprite is PowerUp))
                 {
                     this.Velocity.Y = -this.Velocity.Y;
                     //if (sprite is GoldBlock)

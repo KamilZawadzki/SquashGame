@@ -35,6 +35,7 @@ namespace Arkanoid.States
 
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+            Game1.globals.BallSpeed = Game1.globals.defaultBallSpeed;
             maxPoints = 0;
             ScreenWidth = Game1.globals.ScreenWidth;
             ScreenHeight = Game1.globals.ScreenHeight;
@@ -43,7 +44,7 @@ namespace Arkanoid.States
             game.IsMouseVisible = false;
 
 
-            powerup = content.Load<Texture2D>("PowerUps/powerup");
+            powerup = content.Load<Texture2D>("PowerUps/slider");
             var batTexture = content.Load<Texture2D>("Sprites/paddle");
             var ballTexture = content.Load<Texture2D>("Sprites/ball_round");
             var blockTexture_gold = content.Load<Texture2D>("Sprites/blocks/block_gold");

@@ -21,6 +21,7 @@ namespace Arkanoid.States
             var buttonTexture = content.Load<Texture2D>("Buttons/button");
             var buttonFont = content.Load<SpriteFont>("Fonts/Font");
             int middle = (Game1.globals.ScreenWidth - buttonTexture.Width)/2;
+            int middle2 = (Game1.globals.ScreenWidth - buttonTexture.Width)/2;
 
             var playAgain = new Button(buttonTexture, buttonFont)
             {
@@ -68,7 +69,7 @@ namespace Arkanoid.States
         {
             spriteBatch.Begin();           
 
-            spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "Uzyskane punkty: "+ Game1.globals.actualScore.score_player, new Vector2(120, 80), Color.White);
+            spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "Uzyskane punkty: "+ Game1.globals.actualScore.score_player, new Vector2(150, 80), Color.White);
 
             foreach (var component in _components)
             {

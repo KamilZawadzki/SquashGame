@@ -15,18 +15,21 @@ namespace Arkanoid
         public Random Random { get; set; }
         public bool isPlaying { get; set; }
 
-        public Score actualScore {get;set;}
+        public Score actualScore { get; set; }
         public float BallSpeed { get; internal set; }
+
+        public float defaultBallSpeed { get; set; }
 
         public Globals()
         {
+            defaultBallSpeed = 5f;
             ScreenWidth = 500;
             ScreenHeight = 600;
             Paused = false;
             Random = new Random();
             actualScore = new Score();
             isPlaying = false;
-            BallSpeed = 5f;
+            BallSpeed = defaultBallSpeed;
         }
     }
 }
