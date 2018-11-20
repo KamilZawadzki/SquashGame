@@ -15,8 +15,8 @@ namespace Arkanoid.Sprites
     {
         int sprite_life;
         int points_for_break;
-        Texture2D _texture,_batShort,_batLong,_powerup;
-        public GoldBlock(Texture2D texture, Texture2D batLong, Texture2D batShort, Texture2D powerup) : base(texture)
+        Texture2D _texture,_batShort,_batLong,_powerup,_powerup2;
+        public GoldBlock(Texture2D texture, Texture2D batLong, Texture2D batShort, Texture2D powerup,Texture2D powerup2) : base(texture)
         {
             this.sprite_life = 1;
             this.points_for_break = 1;
@@ -24,6 +24,7 @@ namespace Arkanoid.Sprites
             _batLong = batLong;
             _batShort = batShort;
             _powerup = powerup;
+            _powerup2 = powerup2;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -74,8 +75,16 @@ namespace Arkanoid.Sprites
                 int number = rnd.Next(1, 5);
                 if (number == 2)
                 {
-                    PowerUp2 power = new PowerUp2(_powerup, this.Position, _batShort, _batLong);
+                    PowerUp2 power = new PowerUp2(_powerup2, this.Position, _batShort, _batLong);
                     sprites.Add(power);
+                }
+                else
+                {
+                    if(number==3)
+                    {
+                        PowerUp speeder = new PowerUp(_powerup, new Vector2(this.Position.X, this.Position.Y));
+                        sprites.Add(speeder);
+                    }
                 }
 
             }

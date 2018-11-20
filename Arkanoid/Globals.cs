@@ -1,6 +1,7 @@
 ﻿using Arkanoid.Models;
 using Arkanoid.States;
 using System;
+using System.IO;
 
 namespace Arkanoid
 {
@@ -14,7 +15,7 @@ namespace Arkanoid
         public State nextState { get; set; }
         public Random Random { get; set; }
         public bool isPlaying { get; set; }
-
+        public bool check_dir { get; set; }
         public Score actualScore { get; set; }
         public float BallSpeed { get; internal set; }
 
@@ -29,6 +30,7 @@ namespace Arkanoid
             Random = new Random();
             actualScore = new Score();
             isPlaying = false;
+            check_dir = false;
             BallSpeed = defaultBallSpeed;
         }
     }

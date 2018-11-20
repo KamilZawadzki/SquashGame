@@ -27,7 +27,7 @@ namespace Arkanoid.States
         public static Random Random;
 
         PowerUp speeder;
-        Texture2D powerup;
+        Texture2D powerup,powerup2;
         Ball ball;
 
         private List<Sprite> _sprites;
@@ -46,6 +46,7 @@ namespace Arkanoid.States
 
 
             powerup = content.Load<Texture2D>("PowerUps/slider");
+            powerup2 = content.Load<Texture2D>("PowerUps/slider2");
             var batTexture = content.Load<Texture2D>("Sprites/paddle");
             var batTextureShort = content.Load<Texture2D>("Sprites/batShort");
             var ballTexture = content.Load<Texture2D>("Sprites/ball_round");
@@ -81,10 +82,13 @@ namespace Arkanoid.States
                 ball,
             };
             //
-            Directory.SetCurrentDirectory(@"..\..\..\..");
-
+           if(Game1.globals.check_dir==false)
+            {
+                Directory.SetCurrentDirectory(@"..\..\..\..");
+                Game1.globals.check_dir = true;
+            }
             string[] lines = System.IO.File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, @"Maps\", "map1.txt"));
-            Console.WriteLine("oy"+Environment.CurrentDirectory.ToString());
+
             for (int i = 0; i < lines.Length; i++)
            {
                 string[] splited_line = lines[i].Split(';');
@@ -96,13 +100,13 @@ namespace Arkanoid.States
                     switch(code)
                     {
                         case 'G':
-                            _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
+                            _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup,powerup2)
                             {
                                 Position = new Vector2(temp + (j * blockTexture_gold.Width), height),
                             });
                             break;
                         case 'R':
-                            _sprites.Add(new RedBlock(blockTexture_red, powerup)
+                            _sprites.Add(new RedBlock(blockTexture_red, powerup,powerup2,batTextureShort,batTexture)
                             {
                                 Position = new Vector2(temp + (j * blockTexture_red.Width), height),
                             });
@@ -134,14 +138,14 @@ namespace Arkanoid.States
             if (Game1.globals.Paused)
                 spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "Paused | |", new Vector2(30, 30), Color.Black);
 
-            //if (Game1.globals.actualScore.score_player == 1)
-            //{
-            //    if (speeder == null)
-            //    {
-            //        speeder = new PowerUp(powerup, new Vector2(ball.Position.X, ball.Position.Y));
-            //        _sprites.Add(speeder);
-            //    }
-            //}
+            if (Game1.globals.actualScore.score_player == 1)
+            {
+                if (speeder == null)
+                {
+                    speeder = new PowerUp(powerup, new Vector2(ball.Position.X, ball.Position.Y));
+                    _sprites.Add(speeder);
+                }
+            }
 
             spriteBatch.End();
 
