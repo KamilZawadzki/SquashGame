@@ -81,9 +81,11 @@ namespace Arkanoid.States
                 ball,
             };
             //
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\E6430\source\RepositoriesGit\KamilZawadzki\SquashGame\Arkanoid\Maps\map1.txt");
-           
-          for (int i = 0; i < lines.Length; i++)
+            Directory.SetCurrentDirectory(@"..\..\..\..");
+
+            string[] lines = System.IO.File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, @"Maps\", "map1.txt"));
+            Console.WriteLine("oy"+Environment.CurrentDirectory.ToString());
+            for (int i = 0; i < lines.Length; i++)
            {
                 string[] splited_line = lines[i].Split(';');
                 int height = Convert.ToInt32(splited_line[0]);
