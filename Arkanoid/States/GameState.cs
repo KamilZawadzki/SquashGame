@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,46 +80,39 @@ namespace Arkanoid.States
                 },
                 ball,
             };
-
-            for (int i = 0; i < ile_blokow * 3; i++)
-            {
-                if (i <= ile_blokow - 1)
+            //
+            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\E6430\source\RepositoriesGit\KamilZawadzki\SquashGame\Arkanoid\Maps\map1.txt");
+           
+          for (int i = 0; i < lines.Length; i++)
+           {
+                string[] splited_line = lines[i].Split(';');
+                int height = Convert.ToInt32(splited_line[0]);
+                string single_line = splited_line[1];
+                for(int j=0;j<single_line.Length;j++)
                 {
-
-                    _sprites.Add(new GoldBlock(blockTexture_gold,batTexture,batTextureShort,powerup)
+                    char code = single_line[j];
+                    switch(code)
                     {
-                        Position = new Vector2(temp + (i * blockTexture_gold.Width), 100),
-                    });
-                    _sprites.Add(new RedBlock(blockTexture_red, powerup)
-                    {
-                        Position = new Vector2(temp + (i * blockTexture_red.Width), 84),
-                    });
-                    _sprites.Add(new GoldBlock(blockTexture_gold,batTexture, batTextureShort, powerup)
-                    {
-                        Position = new Vector2(temp + (i * blockTexture_gold.Width), 68),
-                    });
-                    _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
-                    {
-                        Position = new Vector2(temp + (i * blockTexture_gold.Width), 52),
-                    });
-                    _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
-                    {
-                        Position = new Vector2(temp + (i * blockTexture_gold.Width), 36),
-                    });
-                    _sprites.Add(new RedBlock(blockTexture_red, powerup)
-                    {
-                        Position = new Vector2(temp + (i * blockTexture_red.Width), 116),
-                    });
-                    _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
-                    {
-                        Position = new Vector2(temp + (i * blockTexture_gold.Width), 132),
-                    });
-                    _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
-                    {
-                        Position = new Vector2(temp + (i * blockTexture_gold.Width), 148),
-                    });
+                        case 'G':
+                            _sprites.Add(new GoldBlock(blockTexture_gold, batTexture, batTextureShort, powerup)
+                            {
+                                Position = new Vector2(temp + (j * blockTexture_gold.Width), height),
+                            });
+                            break;
+                        case 'R':
+                            _sprites.Add(new RedBlock(blockTexture_red, powerup)
+                            {
+                                Position = new Vector2(temp + (j * blockTexture_red.Width), height),
+                            });
+                            break;
+                        default:
+                            Console.WriteLine("Map file: read error");
+                            break;
+                    }
                 }
             }
+            //
+
             foreach (Sprite xa in _sprites)
             {
                 if (xa is GoldBlock)
