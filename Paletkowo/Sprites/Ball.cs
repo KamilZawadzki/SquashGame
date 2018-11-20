@@ -197,6 +197,16 @@ namespace Paletkowo.Sprites
                
             else if (Position.Y + _texture.Height >= Game1.ScreenHeight)
             {
+                if (Player == true)
+                {
+                    Game1.punkty.score_player--;
+                    Console.WriteLine("Player score: " + Game1.punkty.score_player);
+                }
+                else
+                {
+                    Game1.punkty.score_bot--;
+                    Console.WriteLine("Bot score: " + Game1.punkty.score_bot);
+                }
                 Restart();
                 restart = true;
    

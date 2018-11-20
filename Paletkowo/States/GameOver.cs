@@ -64,8 +64,22 @@ namespace Paletkowo.States
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            Game1.punkty.score_bot = 0;
-
+            //Game1.punkty.score_bot = 0;
+            if (Game1.punkty.score_player > Game1.punkty.score_bot)
+            {
+                spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "You won!!!", new Vector2(350, 50), Color.Black);
+            }
+            else
+            {
+                if(Game1.punkty.score_player==Game1.punkty.score_bot)
+                {
+                    spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "Draw...", new Vector2(350, 50), Color.Black);
+                }
+                else
+                {
+                    spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "You lost...", new Vector2(350, 50), Color.Black);
+                }
+            }
             spriteBatch.DrawString(_content.Load<SpriteFont>("Fonts/Font"), "Punkty:\nGracz: "+ Game1.punkty.score_player+"\nBot: "+ Game1.punkty.score_bot, new Vector2(120, 80), Color.Black);
             foreach (var component in _components)
             {
